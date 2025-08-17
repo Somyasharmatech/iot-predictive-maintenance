@@ -1,0 +1,6 @@
+# dependencies
+/node_modules
+/.venv
+
+# project files
+/predictive_maintenance_model.joblib
