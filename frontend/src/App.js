@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { createRoot } from 'react-dom/client';
 
 // A simple function to generate some data for demonstration
 const generateMockData = (numPoints = 50) => {
@@ -38,7 +39,7 @@ const generateMockData = (numPoints = 50) => {
 // This is the mock API call for real-time prediction
 const getPrediction = async (data) => {
   const lastData = data[data.length - 1];
-  
+
   // This is a dummy prediction logic based on a simple threshold
   const isFailure = lastData.vibration_level > 8.5;
   const probability = isFailure ? 0.95 : 0.05;
@@ -123,7 +124,7 @@ const DashboardPage = ({ data, prediction }) => {
             <p className="text-center text-lg text-slate-400">Loading prediction...</p>
           )}
         </div>
-        
+
         <div className="bg-slate-800 rounded-xl shadow-lg p-6 flex flex-col justify-center items-center">
           <h2 className="text-xl font-semibold mb-4 text-indigo-400">Prob. of Failure</h2>
           {prediction && (
@@ -204,7 +205,7 @@ const DashboardPage = ({ data, prediction }) => {
 const ManualPredictionPage = () => {
   const [formData, setFormData] = useState({ temperature: '', vibration_level: '', pressure: '' });
   const [apiPrediction, setApiPrediction] = useState(null);
-  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevData => ({ ...prevData, [name]: parseFloat(value) || '' }));
@@ -216,13 +217,13 @@ const ManualPredictionPage = () => {
       alert("Please fill all fields to make a prediction.");
       return;
     }
-    
+
     // This is a mock API call to demonstrate the flow
     getPrediction([formData])
       .then(result => setApiPrediction(result))
       .catch(err => console.error("API Prediction failed:", err));
   };
-  
+
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="bg-slate-800 rounded-xl shadow-lg p-6 mb-8">
@@ -331,7 +332,7 @@ const App = () => {
 
         return newData;
       });
-      
+
     }, 2000);
 
     return () => clearInterval(interval);
