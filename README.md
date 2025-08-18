@@ -3,8 +3,8 @@ This project is a complete, end-to-end solution for a predictive maintenance sys
 
 🚀 Live Demo
 You can view the live, working version of this dashboard here:
-View Live Dashboard
-
+[View Live Dashboard
+](https://iot-maintenance.onrender.com/)
 ✨ Key Features
 End-to-End Data Pipeline: A robust system that moves simulated sensor data through a streaming platform and into a live database.
 
