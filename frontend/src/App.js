@@ -211,7 +211,7 @@ const DashboardPage = ({ data, prediction }) => {
     );
 };
 
-const ManualPredictionPage = () => {
+const ManualPredictionPage = ({ getManualPrediction }) => {
     const [formData, setFormData] = useState({ temperature: '', vibration_level: '', pressure: '' });
     const [apiPrediction, setApiPrediction] = useState(null);
 
@@ -222,23 +222,6 @@ const ManualPredictionPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // This is a new API call to demonstrate a more robust flow with partial data
-        const getManualPrediction = async (data) => {
-            const response = await fetch("https://iot-predictiction-api.onrender.com/predict-partial", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            return response.json();
-        };
 
         // Call the new prediction function with the form data
         getManualPrediction(formData)
@@ -321,7 +304,7 @@ const ManualPredictionPage = () => {
 
 const App = () => {
     const [currentPage, setCurrentPage] = useState('dashboard');
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(generateMockData());
     const [prediction, setPrediction] = useState(null);
 
     // Update data and get prediction every few seconds
@@ -371,7 +354,7 @@ const App = () => {
                 {currentPage === 'dashboard' ? (
                     <DashboardPage data={data} prediction={prediction} />
                 ) : (
-                    <ManualPredictionPage />
+                    <ManualPredictionPage getManualPrediction={getPrediction} />
                 )}
             </main>
         </div>
