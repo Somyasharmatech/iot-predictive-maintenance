@@ -1,11 +1,14 @@
 IoT Predictive Maintenance Dashboard
+
 This project is a complete, end-to-end solution for a predictive maintenance system. It demonstrates how to build a modern data engineering pipeline, integrate a machine learning model, and visualize real-time data in a live dashboard.
 
 🚀 Live Demo
 You can view the live, working version of this dashboard here:
 [View Live Dashboard
 ](https://iot-maintenance.onrender.com/)
+
 ✨ Key Features
+
 End-to-End Data Pipeline: A robust system that moves simulated sensor data through a streaming platform and into a live database.
 
 Real-time Predictions: A machine learning model that predicts equipment failure in real-time.
